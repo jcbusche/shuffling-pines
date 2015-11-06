@@ -16,20 +16,20 @@
   <body>
     <h1>Shuffling Pines</h1>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12" ng-controller="TabController as tabCtrl">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#form" aria-controls="form" role="tab" data-toggle="tab">Form</a></li>
-          <li role="presentation"><a href="#guests" aria-controls="guests" role="tab" data-toggle="tab">Guests</a></li>
+          <li ng-class="{active: tabCtrl.checkTab(1)}" ng-click="tabCtrl.setTab(1)" role="presentation" class="active"><a href="#form" aria-controls="form" role="tab" >Form</a></li>
+          <li ng-class="{active: tabCtrl.checkTab(2)}" ng-click="tabCtrl.setTab(2)" role="presentation"><a href="#guests" aria-controls="guests" role="tab" >Guests</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
           <!-- Tab pane 1 -->
-          <div role="tabpanel" class="tab-pane active" id="form">
+          <div role="tabpanel" class="tab-pane active" id="form" ng-show="tabCtrl.checkTab(1)">
             <div ng-controller='FormController as formCtrl'>
 
-              <form class="col-md-6 well" ng-submit = "formCtrl.addguest()">
+              <form class="col-md-6 well" ng-submit = "formCtrl.storeGuest()">
                 <div class="form-group">
                   <label for="guest-name">Guest Name</label>
                   <input ng-model="formCtrl.name" type="text" class="form-control" id="guest-name" placeholder="">
@@ -77,10 +77,9 @@
           </div>
 
           <!-- Tab pane 2 -->
-          <div role="tabpanel" class="tab-pane" id="guests">
+          <div role="tabpanel" class="tab-pane" id="guests" ng-show="tabCtrl.checkTab(2)" ng-controller="ListController as listCtrl">
             <ul class="list-unstyled">
-              <li>
-
+              <li ng-repeat="guest in listCtrl.guestList">
               </li>
             </ul>
           </div>
