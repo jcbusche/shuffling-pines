@@ -1,7 +1,7 @@
 {
   "name": "shuffling-pines",
   "version": "1.0.0",
-  "description": "",
+  "description": "`bower install` `open src/index.html`",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,21 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.9.0"
-  }
+    "bower": "^1.6.5",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.12.0",
+    "karma": "^0.13.15",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcbusche/shuffling-pines.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jcbusche/shuffling-pines/issues"
+  },
+  "homepage": "https://github.com/jcbusche/shuffling-pines#readme"
 }

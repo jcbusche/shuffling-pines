@@ -1,14 +1,11 @@
 {
   "name": "shuffling-pines",
   "version": "0.0.1",
-  "authors": [
-    ""
-  ],
   "description": "",
   "main": "app.js",
   "moduleType": [],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/jcbusche/shuffling-pines",
   "private": true,
   "ignore": [
     "**/.*",
@@ -19,6 +16,9 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.5",
-    "angular": "~1.4.6"
+    "angular": "~1.4.6",
+    "requirejs": "~2.1.20",
+    "jshint": "~2.9.0",
+    "karma": "~0.4.6"
   }
 }
