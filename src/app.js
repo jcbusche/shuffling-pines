@@ -78,7 +78,8 @@ angular.module('shuffling', [])
 				localStorage.removeItem(guest.name);
 			}
 			else if (status == "update"){
-				if (oldStatus == "Pick-Up" || oldStatus == "Drop-Off"){
+				console.log("oldStatus: " + oldStatus);
+				if (oldStatus == "Pick-Up" || oldStatus == "Drop-Off" || oldStatus == "update"){
 					status = "Arrived";
 				}
 				else if (oldStatus == "Arrived"){
@@ -88,12 +89,14 @@ angular.module('shuffling', [])
 				updatedGuest = {name: name, date: date, status: status, location: location};
 				newGuest = JSON.stringify(updatedGuest);
 				localStorage.setItem(guest.name, newGuest);
+				console.log(newGuest);
 			}
 			else {
 				//console.log("status: " + status);
-				updatedGuest = {name: name, date: date, status: status, location: location};
+				updatedGuest = {name: name, date: date, status: oldStatus, location: location};
 				newGuest = JSON.stringify(updatedGuest);
 				localStorage.setItem(guest.name, newGuest);
+				console.log(newGuest);
 			}
 		};
 	})
