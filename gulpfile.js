@@ -2,6 +2,7 @@
 
 //Include gulp
 var gulp = require('gulp');
+var bower = require('bower');
 
 //include plugins
 var jshint = require('gulp-jshint');
@@ -15,6 +16,13 @@ gulp.task('lint', function(){
 
 gulp.task('watch', function(){
 	gulp.watch('src/**/*.js', ['lint']);
+});
+
+gulp.task('bower', function(cb){
+	bower.commands.install([], {save: true}, {})
+		.on('end', function(installed){
+			cb();
+		});
 });
 
 
