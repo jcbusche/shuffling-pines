@@ -19,7 +19,7 @@
       <div class="col-md-12" ng-controller="TabController as tabCtrl">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li ng-class="{active: tabCtrl.checkTab(1)}" ng-click="tabCtrl.setTab(1)" role="presentation" class="active"><a href="#form" aria-controls="form" role="tab" >Form</a></li>
+          <li ng-class="{active: tabCtrl.checkTab(1)}" ng-click="tabCtrl.setTab(1)" role="presentation"><a href="#form" aria-controls="form" role="tab" >Form</a></li>
           <li ng-class="{active: tabCtrl.checkTab(2)}" ng-click="tabCtrl.setTab(2)" role="presentation"><a href="#guests" aria-controls="guests" role="tab" >Guests</a></li>
         </ul>
 
@@ -29,30 +29,30 @@
           <div role="tabpanel" class="tab-pane active" id="form" ng-show="tabCtrl.checkTab(1)">
             <div ng-controller='FormController as formCtrl'>
 
-              <form class="col-md-6 well" ng-submit = "formCtrl.storeGuest()">
+              <form class="col-md-6 well" ng-submit = "formCtrl.storeGuest(); tabCtrl.changeTabOnSubmit()">
                 <div class="form-group">
                   <label for="guest-name">Guest Name</label>
-                  <input ng-model="formCtrl.name" type="text" class="form-control" id="guest-name" placeholder="">
+                  <input ng-model="formCtrl.name" type="text" class="form-control" id="guest-name" placeholder="" required>
                 </div>
                 <div class="form-group">
                   <label for="transition-date">Transition Date</label>
-                  <input ng-model="formCtrl.date" type="date" class="form-control" id="transition-date" placeholder="">
+                  <input ng-model="formCtrl.date" type="date" class="form-control" id="transition-date" placeholder="" required>
                 </div>
                 <div class="radio">
                   <label>
-                    <input ng-model="formCtrl.status" type="radio" name="pickup-dropoff" id="pickup" value="Pick-Up" checked>
+                    <input ng-model="formCtrl.status" type="radio" name="pickup-dropoff" id="pickup" value="Pick-Up" checked required>
                     Pick-up
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input ng-model="formCtrl.status" type="radio" name="pickup-dropoff" id="dropoff" value="Drop-Off">
+                    <input ng-model="formCtrl.status" type="radio" name="pickup-dropoff" id="dropoff" value="Drop-Off" required>
                     Drop-off
                   </label>
                 </div>
                 <div class="form-group">
                   <label for="location">Location</label>
-                  <textarea ng-model="formCtrl.location" class="form-control" id="location"></textarea>
+                  <textarea ng-model="formCtrl.location" class="form-control" id="location" required></textarea>
                 </div>
                 <button type="submit" class="btn">Submit</button>
               </form>
@@ -77,11 +77,37 @@
           </div>
 
           <!-- Tab pane 2 -->
-          <div role="tabpanel" class="tab-pane" id="guests" ng-show="tabCtrl.checkTab(2)" ng-controller="ListController as listCtrl">
-            <ul class="list-unstyled">
-              <li ng-repeat="guest in listCtrl.guestList">
-              </li>
-            </ul>
+          <div role="tabpanel" class="tab-pane active" id="guests"  ng-show="tabCtrl.checkTab(2)">
+            <div>
+              <ul class="list-unstyled" ng-repeat="guest in tabCtrl.guests">
+                <li >
+                  Name: {{guest.name}}
+                </li>
+                <li>
+                  Transition Date: {{guest.date}}
+                </li>
+                <li>
+                  Status: {{guest.status}}
+                </li>
+                <li>
+                  Location: {{guest.location}}
+                  <input ng-model="guest.location">
+                </li>
+                <label>
+                  <input type="radio" name="update-guest" id="update" value="update" required ng-model="guest.status">
+                  Update Status
+                </label>
+                <label>
+                  <input type="radio" name="update-guest" id="delete" value="delete" required ng-model="guest.status">
+                  Delete?
+                </label>
+                <button class="btn" ng-click="tabCtrl.guestUpdate(guest, guest.name)">Update</button>
+
+
+                <br>
+              </ul>
+            </div>
+
           </div>
 
         </div>
